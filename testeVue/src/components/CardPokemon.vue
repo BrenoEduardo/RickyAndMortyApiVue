@@ -1,9 +1,3 @@
-<template>
-  <div @keyup.enter="searchPokemon()">
-    <input type="text" v-model="valueWritten" />
-    <button @click="searchPokemon()">Pesquisar</button>
-  </div>
-</template>
 
 <script setup>
 import { ref } from "vue";
@@ -18,6 +12,12 @@ function searchPokemon() {
   }
 }
 </script>
+<template>
+  <div @keyup.enter="searchPokemon()">
+    <input type="text" v-model="valueWritten" />
+    <button @click="searchPokemon()">Pesquisar</button>
+  </div>
+</template>
 
 <style scoped>
 div {

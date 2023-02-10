@@ -15,6 +15,7 @@ if (showInfo) {
   showInfos.value = showInfo;
 }
 function showCard() {
+  console.log(this.viewCard, 'view card')
   this.viewCard = !this.viewCard;
 }
 if (alertErro) {
@@ -24,7 +25,7 @@ if (alertErro) {
 
 <template>
   <main class="backGround">
-    <div v-on:click="showCard()" class="cursor">
+    <div @click="showCard()" class="cursor">
       <img src="../assets/searchTooltip.png" alt="" />
       <img src="../assets/personagem.png" alt="" />
     </div>
