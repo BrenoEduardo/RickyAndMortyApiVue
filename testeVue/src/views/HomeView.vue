@@ -15,8 +15,7 @@ if (showInfo) {
   showInfos.value = showInfo;
 }
 function showCard() {
-  console.log(this.viewCard, 'view card')
-  this.viewCard = !this.viewCard;
+  viewCard.value = !viewCard.value;
 }
 if (alertErro) {
   alertErro.value = alertErros;
