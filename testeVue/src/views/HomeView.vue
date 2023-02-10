@@ -6,20 +6,19 @@ import { storeToRefs } from "pinia";
 import { usePokemonStore } from "../stores/pokemonState";
 
 const viewCard = ref(false);
+const useStatePokemon = usePokemonStore();
 const showInfos = ref(false);
+const { showInfo } = storeToRefs(useStatePokemon);
 const { alertErro } = storeToRefs(useStatePokemon);
 const alertErros = ref(false);
-const useStatePokemon = usePokemonStore();
-const { showInfo } = storeToRefs(useStatePokemon);
-
 if (showInfo) {
   showInfos.value = showInfo;
 }
-if (alertErro) {
-  alertErro.value = alertErros;
-}
 function showCard() {
   this.viewCard = !this.viewCard;
+}
+if (alertErro) {
+  alertErro.value = alertErros;
 }
 </script>
 
