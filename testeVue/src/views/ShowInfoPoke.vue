@@ -26,7 +26,6 @@ function backHome() {
   useStatePokemon.$reset();
   router.push({ name: "telaAfterHome" });
 }
-// const store = useStore()
 </script>
 
 <template>
