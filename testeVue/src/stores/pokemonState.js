@@ -1,11 +1,11 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import router from "@/router";
 
 export const usePokemonStore = defineStore("pokemonState", {
   state: () => {
     return {
       infoPokemon: null,
+      showInfo: false,
     };
   },
   actions: {
@@ -15,7 +15,7 @@ export const usePokemonStore = defineStore("pokemonState", {
           .get(`https://pokeapi.co/api/v2/pokemon/${infoPokemon}`)
           .then((res) => {
             this.infoPokemon = res;
-            router.push({ name: "showInfoPoke" });
+            this.showInfo = true;
           });
       } catch (error) {
         alert("deu erro");

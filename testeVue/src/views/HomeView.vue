@@ -1,10 +1,20 @@
 <script setup>
 import { ref } from "vue";
 import CardPokemon from "../components/CardPokemon.vue";
+import ShowInfoPoke from "./ShowInfoPoke.vue";
+import { storeToRefs } from "pinia";
+import { usePokemonStore } from "../stores/pokemonState";
 
 const viewCard = ref(false);
 function showCard() {
   this.viewCard = !this.viewCard;
+}
+const showInfos = ref(false);
+
+const useStatePokemon = usePokemonStore();
+const { showInfo } = storeToRefs(useStatePokemon);
+if (showInfo) {
+  showInfos.value = showInfo;
 }
 </script>
 
@@ -13,6 +23,9 @@ function showCard() {
     <img src="../assets/personagem.png" alt="" v-on:click="showCard()" />
     <div v-bind:class="{ openModal: viewCard, viewCardNone: !viewCard }">
       <CardPokemon />
+    </div>
+    <div v-bind:class="{ openModal: showInfo, viewCardNone: !showInfo }" class="infoPokemon">
+      <ShowInfoPoke />
     </div>
   </main>
 </template>
@@ -37,5 +50,8 @@ function showCard() {
 }
 .openModal {
   display: block;
+}
+.infoPokemon{
+
 }
 </style>

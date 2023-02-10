@@ -8,13 +8,13 @@
 <script setup>
 import { ref } from "vue";
 import { usePokemonStore } from "../stores/pokemonState";
-import router from "@/router";
+// import router from "@/router";
 
 const valueWritten = ref("");
 const usePokemonState = usePokemonStore();
 function searchPokemon() {
   usePokemonState.saveState(valueWritten.value);
-  router.push({ name: "showInfoPoke" });
+//   router.push({ name: "showInfoPoke" });
 }
 </script>
 
