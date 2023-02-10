@@ -20,11 +20,16 @@ if (showInfo) {
 
 <template>
   <main class="backGround">
+    <img src="../assets/searchTooltip.png" alt="" />
     <img src="../assets/personagem.png" alt="" v-on:click="showCard()" />
     <div v-bind:class="{ openModal: viewCard, viewCardNone: !viewCard }">
       <CardPokemon />
     </div>
-    <div v-bind:class="{ openModal: showInfo, viewCardNone: !showInfo }" class="infoPokemon">
+    <div
+      v-if="showInfo"
+      v-bind:class="{ openModal: showInfo, viewCardNone: !showInfo }"
+      class="infoPokemon"
+    >
       <ShowInfoPoke />
     </div>
   </main>
@@ -51,7 +56,6 @@ if (showInfo) {
 .openModal {
   display: block;
 }
-.infoPokemon{
-
+.infoPokemon {
 }
 </style>

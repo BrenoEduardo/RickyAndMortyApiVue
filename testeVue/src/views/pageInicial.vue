@@ -9,7 +9,7 @@ function changeHomePage() {
 <template>
   <div>
     <div class="principalDiv">
-      <img src="../assets/logo.png" class="image"/>
+      <img src="../assets/logo.png" class="imageInicial"/>
       <button class="button" @click="changeHomePage()">start</button>
     </div>
   </div>
@@ -25,12 +25,12 @@ function changeHomePage() {
   width: 100vw;
   background-image: linear-gradient(to right, #43e97b, #38f9d7);
 }
-.image {
+.imageInicial {
   width: 270px;
   height: 99px;
   margin-bottom: 32px;
 }
-.button {
+button {
   background: #ff3d71;
   padding: 16px 24px;
   color: #fff;

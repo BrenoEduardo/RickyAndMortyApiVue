@@ -14,7 +14,7 @@ const valueWritten = ref("");
 const usePokemonState = usePokemonStore();
 function searchPokemon() {
   usePokemonState.saveState(valueWritten.value);
-//   router.push({ name: "showInfoPoke" });
+  //   router.push({ name: "showInfoPoke" });
 }
 </script>
 
@@ -25,5 +25,8 @@ div {
 }
 input {
   margin-bottom: 10px;
+  border-radius: 10px;
+  border: none;
+  height: 2.5vh;
 }
 </style>

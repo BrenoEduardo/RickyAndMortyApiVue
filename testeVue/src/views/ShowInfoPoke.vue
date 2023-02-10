@@ -6,11 +6,21 @@ import router from "@/router";
 
 const useStatePokemon = usePokemonStore();
 const { infoPokemon } = storeToRefs(useStatePokemon);
+
 const namePokemon = computed(() => {
   return infoPokemon.value?.data?.name;
 });
 const abilitiesPokemon = computed(() => {
   return infoPokemon.value?.data?.abilities;
+});
+const imagePokemon = computed(() => {
+  return infoPokemon.value?.data?.sprites;
+});
+const statusPokemon = computed(() => {
+  return infoPokemon.value?.data?.stats;
+});
+const typePokemon = computed(() => {
+  return infoPokemon.value?.data?.types;
 });
 function backHome() {
   useStatePokemon.$reset();
@@ -23,13 +33,26 @@ function backHome() {
   <div class="divPrincipal">
     <div class="itens">
       <div class="divImage">
-        <img src="" alt="" class="image" />
+        <img :src="imagePokemon.front_default" alt="" class="image" />
       </div>
-      <h1>Nome do pokemon: {{ namePokemon }}</h1>
-      <div>
+      <h1>{{ namePokemon }}</h1>
+      <div class="tipoPokemon">
+        <h3>Tipo:</h3>
+        <div v-for="(typePokemon, index) in typePokemon" :key="index">
+          {{ typePokemon.type.name }};
+        </div>
+      </div>
+      <div class="habilidadesPokemon">
+        <h3>Habilidades:</h3>
         <div v-for="(pokemon, index) in abilitiesPokemon" :key="index">
           <div>{{ pokemon.ability.name }}</div>
-          <img src="{{pokemon.ability.url}}" alt="" />
+          <!-- <img src="{{pokemon.ability.url}}" alt="" /> -->
+        </div>
+      </div>
+      <div class="statusPokemon">
+        <h3>Status:</h3>
+        <div v-for="(statusPok, index) in statusPokemon" :key="index">
+          <div>{{ statusPok.stat.name }} : {{ statusPok.base_stat }}</div>
         </div>
       </div>
       <button @click="backHome()">Voltar</button>
@@ -40,16 +63,23 @@ function backHome() {
 <style>
 .divPrincipal {
   background-image: linear-gradient(to right, #43e97b, #38f9d7);
-  height: 100vh;
+  height: 82vh;
   width: 100vw;
+  max-width: 600px;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-family: "Open Sans", sans-serif;
   overflow-y: scroll;
   z-index: 8000;
   border-radius: 8px;
   box-sizing: border-box;
+}
+.tipoPokemon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .itens {
   width: 100%;
@@ -72,9 +102,15 @@ function backHome() {
   background-color: #f7f9fc;
   position: absolute;
   overflow: hidden;
+  top: 0px;
 }
 .image {
-  height: 247px;
-  width: 247px;
+  width: 161px;
+  height: 103px;
+  margin-bottom: 8px;
+}
+.habilidadesPokemon {
+}
+.statusPokemon {
 }
 </style>
