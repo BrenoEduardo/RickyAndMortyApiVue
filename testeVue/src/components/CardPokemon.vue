@@ -7,7 +7,7 @@ const valueWritten = ref("");
 const usePokemonState = usePokemonStore();
 function searchPokemon() {
   if (valueWritten.value) {
-    usePokemonState.saveState(valueWritten.value);
+    usePokemonState.saveState(valueWritten.value.toLowerCase());
   }
 }
 </script>
