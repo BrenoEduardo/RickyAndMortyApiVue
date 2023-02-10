@@ -38,9 +38,13 @@ function backHome() {
       <h1>{{ namePokemon }}</h1>
       <div class="allInfos">
         <div class="tipoPokemon">
-          <h3>Tipo</h3>
+          <h3>Tipo(s)</h3>
           <div class="typeInfos">
-            <div v-for="(typePokemon, index) in typePokemon" :key="index">
+            <div
+              v-for="(typePokemon, index) in typePokemon"
+              :key="index"
+              class="infosCss"
+            >
               {{ typePokemon.type.name }}
             </div>
           </div>
@@ -48,7 +52,11 @@ function backHome() {
         <div class="habilityPokemon">
           <h3>Habilidades</h3>
           <div class="typeInfos">
-            <div v-for="(pokemon, index) in abilitiesPokemon" :key="index">
+            <div
+              v-for="(pokemon, index) in abilitiesPokemon"
+              :key="index"
+              class="infosCss"
+            >
               <div>{{ pokemon.ability.name }}</div>
               <!-- <img src="{{pokemon.ability.url}}" alt="" /> -->
             </div>
@@ -56,8 +64,13 @@ function backHome() {
         </div>
         <div class="statusPokemon">
           <h3>Status</h3>
-          <div v-for="(statusPok, index) in statusPokemon" :key="index">
-            <div>{{ statusPok.stat.name }} : {{ statusPok.base_stat }}</div>
+          <div
+            v-for="(statusPok, index) in statusPokemon"
+            :key="index"
+            class="infosCssState"
+          >
+            <div>{{ statusPok.stat.name }}</div>
+            <div>{{ statusPok.base_stat }}</div>
           </div>
         </div>
       </div>
@@ -82,11 +95,35 @@ function backHome() {
   border-radius: 8px;
   box-sizing: border-box;
 }
+.infosCss {
+  width: 100%;
+  text-align: center;
+  border: 1px solid green;
+  border-radius: 10px;
+  margin-left: 16px;
+}
+.infosCssState {
+  width: 97%;
+  padding-bottom: -2px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid green;
+  border-radius: 10px;
+  margin-bottom: 7px;
+  margin-left: 18px;
+}
 .tipoPokemon {
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: center;
+}
+h3::after {
+  content: " ";
+  background-color: #38f9d7;
+  display: block;
+  height: 5px;
+  width: 100%;
 }
 .itens {
   width: 100%;
