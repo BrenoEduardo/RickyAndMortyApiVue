@@ -38,5 +38,6 @@ button {
   border: none;
   font-size: 18px;
   font-weight: bold;
+  cursor: pointer;
 }
 </style>

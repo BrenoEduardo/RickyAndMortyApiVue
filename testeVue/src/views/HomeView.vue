@@ -16,12 +16,19 @@ const { showInfo } = storeToRefs(useStatePokemon);
 if (showInfo) {
   showInfos.value = showInfo;
 }
+const { alertErro } = storeToRefs(useStatePokemon);
+const alertErros = ref(false);
+if (alertErro) {
+  alertErro.value = alertErros;
+}
 </script>
 
 <template>
   <main class="backGround">
-    <img src="../assets/searchTooltip.png" alt="" />
-    <img src="../assets/personagem.png" alt="" v-on:click="showCard()" />
+    <div v-on:click="showCard()" class="cursor">
+      <img src="../assets/searchTooltip.png" alt="" />
+      <img src="../assets/personagem.png" alt="" />
+    </div>
     <div v-bind:class="{ openModal: viewCard, viewCardNone: !viewCard }">
       <CardPokemon />
     </div>
@@ -32,6 +39,9 @@ if (showInfo) {
     >
       <ShowInfoPoke />
     </div>
+    <p v-if="alertErros" class="erro">
+      Pokemon não encontrado, por favor verifique o nome e tente novamente
+    </p>
   </main>
 </template>
 
@@ -56,6 +66,13 @@ if (showInfo) {
 .openModal {
   display: block;
 }
-.infoPokemon {
+.cursor {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.erro {
+  width: 167px;
+  color: white;
 }
 </style>

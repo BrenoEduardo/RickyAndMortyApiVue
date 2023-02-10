@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import showInfoPoke from "../views/ShowInfoPoke.vue";
 import pageInicial from "../views/pageInicial.vue"
 
 const router = createRouter({
@@ -15,12 +14,7 @@ const router = createRouter({
       path: "/home",
       name: "telaAfterHome",
       component: HomeView,
-    },
-    {
-      path: "/showInfoPokemon",
-      name: "showInfoPoke",
-      component: showInfoPoke,
-    },
+    }
   ],
 });
 

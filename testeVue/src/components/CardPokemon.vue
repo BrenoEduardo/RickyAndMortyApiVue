@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @keyup.enter="searchPokemon()">
     <input type="text" v-model="valueWritten" />
     <button @click="searchPokemon()">Pesquisar</button>
   </div>
@@ -13,8 +13,9 @@ import { usePokemonStore } from "../stores/pokemonState";
 const valueWritten = ref("");
 const usePokemonState = usePokemonStore();
 function searchPokemon() {
-  usePokemonState.saveState(valueWritten.value);
-  //   router.push({ name: "showInfoPoke" });
+  if (valueWritten.value) {
+    usePokemonState.saveState(valueWritten.value);
+  }
 }
 </script>
 
@@ -28,5 +29,6 @@ input {
   border-radius: 10px;
   border: none;
   height: 2.5vh;
+  font-family: monospace;
 }
 </style>

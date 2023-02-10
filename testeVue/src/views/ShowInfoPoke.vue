@@ -24,7 +24,7 @@ const typePokemon = computed(() => {
 });
 function backHome() {
   useStatePokemon.$reset();
-  router.push({ name: "home" });
+  router.push({ name: "telaAfterHome" });
 }
 // const store = useStore()
 </script>
@@ -36,23 +36,29 @@ function backHome() {
         <img :src="imagePokemon.front_default" alt="" class="image" />
       </div>
       <h1>{{ namePokemon }}</h1>
-      <div class="tipoPokemon">
-        <h3>Tipo:</h3>
-        <div v-for="(typePokemon, index) in typePokemon" :key="index">
-          {{ typePokemon.type.name }};
+      <div class="allInfos">
+        <div class="tipoPokemon">
+          <h3>Tipo</h3>
+          <div class="typeInfos">
+            <div v-for="(typePokemon, index) in typePokemon" :key="index">
+              {{ typePokemon.type.name }}
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="habilidadesPokemon">
-        <h3>Habilidades:</h3>
-        <div v-for="(pokemon, index) in abilitiesPokemon" :key="index">
-          <div>{{ pokemon.ability.name }}</div>
-          <!-- <img src="{{pokemon.ability.url}}" alt="" /> -->
+        <div class="habilityPokemon">
+          <h3>Habilidades</h3>
+          <div class="typeInfos">
+            <div v-for="(pokemon, index) in abilitiesPokemon" :key="index">
+              <div>{{ pokemon.ability.name }}</div>
+              <!-- <img src="{{pokemon.ability.url}}" alt="" /> -->
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="statusPokemon">
-        <h3>Status:</h3>
-        <div v-for="(statusPok, index) in statusPokemon" :key="index">
-          <div>{{ statusPok.stat.name }} : {{ statusPok.base_stat }}</div>
+        <div class="statusPokemon">
+          <h3>Status</h3>
+          <div v-for="(statusPok, index) in statusPokemon" :key="index">
+            <div>{{ statusPok.stat.name }} : {{ statusPok.base_stat }}</div>
+          </div>
         </div>
       </div>
       <button @click="backHome()">Voltar</button>
@@ -63,7 +69,7 @@ function backHome() {
 <style>
 .divPrincipal {
   background-image: linear-gradient(to right, #43e97b, #38f9d7);
-  height: 82vh;
+  height: 74vh;
   width: 100vw;
   max-width: 600px;
   position: fixed;
@@ -78,6 +84,7 @@ function backHome() {
 }
 .tipoPokemon {
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
 }
@@ -92,9 +99,9 @@ function backHome() {
   border-radius: 24px 24px 0px 0px;
   border: none;
   padding-top: 170px;
-  padding: 170px 24px 0;
+  padding: 113px 24px 0;
   box-sizing: border-box;
-  padding-bottom: 140px;
+  padding-bottom: 33px;
 }
 .divImage {
   border-radius: 50%;
@@ -102,15 +109,36 @@ function backHome() {
   background-color: #f7f9fc;
   position: absolute;
   overflow: hidden;
-  top: 0px;
+  top: -74px;
 }
 .image {
-  width: 161px;
-  height: 103px;
-  margin-bottom: 8px;
+  width: 160px;
 }
-.habilidadesPokemon {
+.allInfos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 35px;
+}
+.typeInfos {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  max-width: 350px;
+}
+.habilityPokemon {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 350px;
 }
 .statusPokemon {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 350px;
 }
 </style>

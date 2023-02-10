@@ -6,6 +6,7 @@ export const usePokemonStore = defineStore("pokemonState", {
     return {
       infoPokemon: null,
       showInfo: false,
+      alertErro: false,
     };
   },
   actions: {
@@ -18,8 +19,7 @@ export const usePokemonStore = defineStore("pokemonState", {
             this.showInfo = true;
           });
       } catch (error) {
-        alert("deu erro");
-        console.log(error);
+        this.alertErro = true;
       }
     },
   },
