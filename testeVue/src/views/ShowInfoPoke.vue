@@ -29,7 +29,7 @@ function backHome() {
 </script>
 
 <template>
-  <div class="divPrincipal">
+  <section class="divPrincipal">
     <div class="itens">
       <div class="divImage">
         <img :src="imagePokemon.front_default" alt="" class="image" />
@@ -75,7 +75,7 @@ function backHome() {
         <button @click="backHome()">Voltar</button>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <style>
