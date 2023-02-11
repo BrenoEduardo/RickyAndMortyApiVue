@@ -72,8 +72,8 @@ function backHome() {
             <div>{{ statusPok.base_stat }}</div>
           </div>
         </div>
+        <button @click="backHome()">Voltar</button>
       </div>
-      <button @click="backHome()">Voltar</button>
     </div>
   </div>
 </template>
@@ -81,7 +81,7 @@ function backHome() {
 <style>
 .divPrincipal {
   background-image: linear-gradient(to right, #43e97b, #38f9d7);
-  height: 74vh;
+  height: 95%;
   width: 100vw;
   max-width: 600px;
   position: fixed;
@@ -93,6 +93,11 @@ function backHome() {
   z-index: 8000;
   border-radius: 8px;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+.divPrincipal::-webkit-scrollbar {
+  display: none;
 }
 .infosCss {
   width: 100%;
@@ -100,6 +105,7 @@ function backHome() {
   border: 1px solid green;
   border-radius: 10px;
   margin-left: 16px;
+  padding: 6px;
 }
 .infosCssState {
   width: 97%;
@@ -110,6 +116,7 @@ function backHome() {
   border-radius: 10px;
   margin-bottom: 7px;
   margin-left: 18px;
+  padding: 6px;
 }
 .tipoPokemon {
   display: flex;
@@ -125,14 +132,15 @@ h3::after {
   width: 100%;
 }
 .itens {
-  width: 100%;
+  width: 90%;
+  height: 723px;
   background-color: #f7f9fc;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 153px;
-  border-radius: 24px 24px 0px 0px;
+  top: 85px;
+  border-radius: 24px;
   border: none;
   padding-top: 170px;
   padding: 113px 24px 0;
@@ -176,5 +184,10 @@ h3::after {
   flex-direction: column;
   align-items: center;
   max-width: 350px;
+}
+@media screen and (min-height: 900px) {
+  .divPrincipal {
+    height: 900px;
+  }
 }
 </style>
