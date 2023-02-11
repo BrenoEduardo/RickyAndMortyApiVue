@@ -33,6 +33,7 @@ function changeHomePage() {
 button {
   background: #ff3d71;
   padding: 16px 24px;
+  width: 50px;
   color: #fff;
   border-radius: 30px;
   border: none;
