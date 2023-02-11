@@ -39,6 +39,6 @@ button {
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 </style>

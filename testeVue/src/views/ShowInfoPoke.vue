@@ -72,7 +72,7 @@ function backHome() {
             <div>{{ statusPok.base_stat }}</div>
           </div>
         </div>
-        <button @click="backHome()">Voltar</button>
+        <button @click="backHome()" class="margin">Voltar</button>
       </div>
     </div>
   </section>
@@ -184,6 +184,9 @@ h3::after {
   flex-direction: column;
   align-items: center;
   max-width: 350px;
+}
+.margin {
+  margin-top: 20px;
 }
 @media screen and (min-height: 900px) {
   .divPrincipal {
