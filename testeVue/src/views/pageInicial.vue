@@ -1,15 +1,21 @@
 <script setup>
 import router from "@/router";
+import { onMounted } from "vue";
+import { useStoreApi } from "../stores/pokemonState";
 
+const usePokemonState = useStoreApi();
 function changeHomePage() {
   router.push({ name: "telaAfterHome" });
+  usePokemonState.loadingInfos();
 }
+onMounted(() => {
+  usePokemonState.loadingInfos();
+});
 </script>
 
 <template>
   <div>
     <div class="principalDiv">
-      <img src="../assets/logo.png" class="imageInicial"/>
       <button class="button" @click="changeHomePage()">start</button>
     </div>
   </div>
@@ -17,21 +23,30 @@ function changeHomePage() {
 
 <style>
 .principalDiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   height: 100vh;
   width: 100vw;
-  background-image: linear-gradient(to right, #43e97b, #38f9d7);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../assets/background.jpg);
 }
+
 .imageInicial {
   width: 270px;
   height: 99px;
   margin-bottom: 32px;
 }
+
 button {
-  background: #ff3d71;
+  background-image: linear-gradient(to right, #22693a, #779a0f);
+  box-shadow: 2px 2px 2px yellow;
   padding: 16px 24px;
   width: 150px;
   color: #fff;

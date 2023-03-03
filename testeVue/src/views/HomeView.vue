@@ -1,52 +1,34 @@
 <script setup>
-import { ref } from "vue";
 import CardPokemon from "../components/CardPokemon.vue";
 import ShowInfoPoke from "./ShowInfoPoke.vue";
 import { storeToRefs } from "pinia";
-import { usePokemonStore } from "../stores/pokemonState";
+import { useStoreApi } from "../stores/pokemonState";
 
-const viewCard = ref(false);
-const useStatePokemon = usePokemonStore();
-const showInfos = ref(false);
-const { showInfo } = storeToRefs(useStatePokemon);
-const { alertErro } = storeToRefs(useStatePokemon);
-const alertErros = ref(false);
-if (showInfo) {
-  showInfos.value = showInfo;
-}
-function showCard() {
-  viewCard.value = !viewCard.value;
-}
-if (alertErro) {
-  alertErro.value = alertErros;
-}
+const useStateApi = useStoreApi();
+const { infoApi } = storeToRefs(useStateApi);
+
+var a = infoApi.value?.results
+
 </script>
 
 <template>
   <main class="backGround">
-    <div @click="showCard()" class="cursor">
-      <img src="../assets/searchTooltip.png" alt="" />
-      <img src="../assets/personagem.png" alt="" />
-    </div>
-    <div v-bind:class="{ openModal: viewCard, viewCardNone: !viewCard }">
+    <div class="search">
       <CardPokemon />
     </div>
-    <div
-      v-if="showInfo"
-      v-bind:class="{ openModal: showInfo, viewCardNone: !showInfo }"
-      class="infoPokemon"
-    >
+    <div class="">
       <ShowInfoPoke />
     </div>
-    <p v-if="alertErros" class="erro">
-      Pokemon não encontrado, por favor verifique o nome e tente novamente
-    </p>
   </main>
 </template>
 
 <style>
+.search {
+  display: flex;
+}
+
 .backGround {
-  background-image: url(../assets/pageBackground.png);
+  background-image: linear-gradient(to right, #368C40, yellow);
   height: 100vh;
   width: 100vw;
   background-repeat: no-repeat;
@@ -55,35 +37,28 @@ if (alertErro) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding-top: 10%;
   box-sizing: border-box;
 }
+
 .viewCardNone {
   display: none;
   opacity: 0.9;
 }
+
 .openModal {
   display: block;
 }
+
 .cursor {
   display: flex;
   flex-direction: column;
   cursor: pointer;
 }
+
 .erro {
   width: 167px;
   color: white;
 }
-.infoPokemon {
-  position: fixed;
-  z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-}
+
 </style>

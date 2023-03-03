@@ -1,85 +1,105 @@
 <script setup>
 import { storeToRefs } from "pinia";
-import { usePokemonStore } from "../stores/pokemonState";
-import { computed } from "vue";
-import router from "@/router";
+import showCharacterInfo  from "./showCharacterInfo.vue";
+import { useStoreApi } from "../stores/pokemonState";
+import { ref } from "vue";
+const useStateApi = useStoreApi();
+const { infoApi } = storeToRefs(useStateApi);
+const { showInfo } = storeToRefs(useStateApi);
 
-const useStatePokemon = usePokemonStore();
-const { infoPokemon } = storeToRefs(useStatePokemon);
 
-const namePokemon = computed(() => {
-  return infoPokemon.value?.data?.name;
-});
-const abilitiesPokemon = computed(() => {
-  return infoPokemon.value?.data?.abilities;
-});
-const imagePokemon = computed(() => {
-  return infoPokemon.value?.data?.sprites;
-});
-const statusPokemon = computed(() => {
-  return infoPokemon.value?.data?.stats;
-});
-const typePokemon = computed(() => {
-  return infoPokemon.value?.data?.types;
-});
-function backHome() {
-  useStatePokemon.$reset();
-  router.push({ name: "telaAfterHome" });
+const usePokemonState = useStoreApi();
+const infos = infoApi.value?.results;
+const showInfos = ref(false);
+
+console.log(infoApi.value?.results, 'infopoekmon');
+
+function openInfoCharacter(event) {
+  usePokemonState.loadingInfosCharacter(event.id)
+  console.log(event, 'evento')
+
+  if (showInfo) {
+    showInfos.value = showInfo;
+    console.log(showInfos.value, 'infos')
+  }
 }
+
+// import { storeToRefs } from "pinia";
+// import { usePokemonStore } from "../stores/pokemonState";
+// import { computed } from "vue";
+// import router from "@/router";
+
+// const useStatePokemon = usePokemonStore();
+// const { infoPokemon } = storeToRefs(useStatePokemon);
+
+// // const namePokemon = computed(() => {
+// //   return infoPokemon.value?.data?.name;
+// // });
+// // const abilitiesPokemon = computed(() => {
+// //   return infoPokemon.value?.data?.abilities;
+// // });
+// // const imagePokemon = computed(() => {
+// //   return infoPokemon.value?.data?.sprites;
+// // });
+// // const statusPokemon = computed(() => {
+// //   return infoPokemon.value?.data?.stats;
+// // });
+// // const typePokemon = computed(() => {
+// //   return infoPokemon.value?.data?.types;
+// // });
+// // function backHome() {
+// //   useStatePokemon.$reset();
+// //   router.push({ name: "telaAfterHome" });
+// // }
 </script>
 
 <template>
   <section class="divPrincipal">
-    <div class="itens">
+    <div class="itens" v-for="(infos, index) in infos" :key="index" @click="openInfoCharacter(infos)">
       <div class="divImage">
-        <img :src="imagePokemon.front_default" alt="" class="image" />
+        <img :src="infos.image" alt="" class="image" />
       </div>
-      <h1>{{ namePokemon }}</h1>
-      <div class="allInfos">
-        <div class="tipoPokemon">
-          <h3>Tipo(s)</h3>
-          <div class="typeInfos">
-            <div
-              v-for="(typePokemon, index) in typePokemon"
-              :key="index"
-              class="infosCss"
-            >
-              {{ typePokemon.type.name }}
+      <h1>{{ infos.name }}</h1>
+      <!-- <div class="allInfos">
+            <div class="tipoPokemon">
+              <h3>Tipo(s)</h3>
+              <div class="typeInfos">
+                <div v-for="(typePokemon, index) in typePokemon" :key="index" class="infosCss">
+                  {{ typePokemon.type.name }}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="habilityPokemon">
-          <h3>Habilidades</h3>
-          <div class="typeInfos">
-            <div
-              v-for="(pokemon, index) in abilitiesPokemon"
-              :key="index"
-              class="infosCss"
-            >
-              <div>{{ pokemon.ability.name }}</div>
-              <!-- <img src="{{pokemon.ability.url}}" alt="" /> -->
-            </div>
-          </div>
-        </div>
-        <div class="statusPokemon">
-          <h3>Status</h3>
-          <div
-            v-for="(statusPok, index) in statusPokemon"
-            :key="index"
-            class="infosCssState"
-          >
-            <div>{{ statusPok.stat.name }}</div>
-            <div>{{ statusPok.base_stat }}</div>
-          </div>
-        </div>
-        <button @click="backHome()" class="margin">Voltar</button>
-      </div>
+            <div class="habilityPokemon">
+              <h3>Habilidades</h3>
+              <div class="typeInfos">
+                <div v-for="(pokemon, index) in abilitiesPokemon" :key="index" class="infosCss">
+                  <div>{{ pokemon.ability.name }}</div>
+                  <img src="{{pokemon.ability.url}}" alt="" /> --> -->
+      <!-- </div>
+                </div>
+              </div>
+              <div class="statusPokemon">
+                <h3>Status</h3>
+                <div
+                  v-for="(statusPok, index) in statusPokemon"
+                  :key="index"
+                  class="infosCssState"
+                >
+                  <div>{{ statusPok.stat.name }}</div>
+                  <div>{{ statusPok.base_stat }}</div>
+                </div>
+              </div>
+              <button @click="backHome()" class="margin">Voltar</button>-->
+      <!-- </div> -->
+    </div>
+    <div v-if="showInfo" v-bind:class="{ openModal: showInfo, viewCardNone: !showInfo }" class="infoPokemon">
+        <showCharacterInfo />
     </div>
   </section>
 </template>
 
 <style>
-.divPrincipal {
+/* .divPrincipal {
   background-image: linear-gradient(to right, #43e97b, #38f9d7);
   height: 95%;
   width: 100vw;
@@ -96,9 +116,11 @@ function backHome() {
   display: flex;
   justify-content: center;
 }
+
 .divPrincipal::-webkit-scrollbar {
   display: none;
 }
+
 .infosCss {
   width: 100%;
   text-align: center;
@@ -107,6 +129,7 @@ function backHome() {
   margin-left: 16px;
   padding: 6px;
 }
+
 .infosCssState {
   width: 97%;
   padding-bottom: -2px;
@@ -118,12 +141,14 @@ function backHome() {
   margin-left: 18px;
   padding: 6px;
 }
+
 .tipoPokemon {
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: center;
 }
+
 h3::after {
   content: " ";
   background-color: #38f9d7;
@@ -131,6 +156,7 @@ h3::after {
   height: 5px;
   width: 100%;
 }
+
 .itens {
   width: 90%;
   height: 723px;
@@ -147,6 +173,7 @@ h3::after {
   box-sizing: border-box;
   padding-bottom: 33px;
 }
+
 .divImage {
   border-radius: 50%;
   border: 4px solid #00d68f;
@@ -155,9 +182,11 @@ h3::after {
   overflow: hidden;
   top: -74px;
 }
+
 .image {
   width: 160px;
 }
+
 .allInfos {
   width: 100%;
   display: flex;
@@ -165,12 +194,14 @@ h3::after {
   align-items: center;
   padding-bottom: 35px;
 }
+
 .typeInfos {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
   max-width: 350px;
 }
+
 .habilityPokemon {
   width: 100%;
   display: flex;
@@ -178,6 +209,7 @@ h3::after {
   align-items: center;
   max-width: 350px;
 }
+
 .statusPokemon {
   width: 100%;
   display: flex;
@@ -185,12 +217,36 @@ h3::after {
   align-items: center;
   max-width: 350px;
 }
+
 .margin {
   margin-top: 20px;
 }
+
 @media screen and (min-height: 900px) {
   .divPrincipal {
     height: 900px;
-  }
+  } */
+/* } */
+
+.viewCardNone {
+  display: none;
+  opacity: 0.9;
+}
+
+.openModal {
+  display: block;
+}
+
+.infoPokemon {
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 </style>
