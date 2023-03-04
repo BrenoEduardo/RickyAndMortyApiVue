@@ -10,7 +10,6 @@ import "animate.css";
 const useStateApi = useStoreApi();
 const { infoApi } = storeToRefs(useStateApi);
 const { showInfo } = storeToRefs(useStateApi);
-// const infos = infoApi.value?.results;
 const showInfos = ref(false);
 onMounted(() => {
   useStateApi.loadingInfos("1");
@@ -19,7 +18,6 @@ onMounted(() => {
 const infos = computed(() => {
   return infoApi.value;
 });
-// let count = 1;
 function openInfoCharacter(event) {
   useStateApi.loadingInfosCharacter(event.id);
 

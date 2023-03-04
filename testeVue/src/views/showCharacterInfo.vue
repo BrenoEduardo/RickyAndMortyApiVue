@@ -5,12 +5,10 @@ import router from "@/router";
 import { computed } from "vue";
 import "animate.css";
 
-// import { ref } from "vue";
 const useStateApi = useStoreApi();
 const { infoCharacter } = storeToRefs(useStateApi);
 const { episodesInfo } = storeToRefs(useStateApi);
 
-// const { showInfo } = storeToRefs(useStateApi);
 var infos = infoCharacter.value;
 
 const episodesInfoarray = computed(() => {

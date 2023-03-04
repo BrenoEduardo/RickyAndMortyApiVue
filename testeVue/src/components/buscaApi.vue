@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import { useStoreApi } from "../stores/state";
-// import router from "@/router";
 
 const valueWritten = ref("");
 const useState = useStoreApi();
