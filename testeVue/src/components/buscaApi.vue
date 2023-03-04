@@ -6,11 +6,12 @@ import { useStoreApi } from "../stores/state";
 const valueWritten = ref("");
 const useState = useStoreApi();
 function searchInfo() {
-  console.log('enttre aqui')
+  console.log("enttre aqui");
+  useState.count = 1;
   if (valueWritten.value) {
     useState.changeState(valueWritten.value.toLowerCase());
   } else {
-    useState.loadingInfos('1');
+    useState.loadingInfos("loadin");
   }
 }
 </script>

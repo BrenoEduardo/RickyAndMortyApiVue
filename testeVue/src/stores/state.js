@@ -52,7 +52,10 @@ export const useStoreApi = defineStore("state", {
     async loadingInfos(count, callback) {
       try {
         let url = `https://rickandmortyapi.com/api/character/?page=${count}`;
-        if (this.infoPerso && count) {
+        console.log(count, "ocunt");
+        if (count == "loadin") {
+          url = `https://rickandmortyapi.com/api/character`;
+        } else if (this.infoPerso && count) {
           url = `${url}&name=${this.infoPerso}`;
         }
 
@@ -83,6 +86,9 @@ export const useStoreApi = defineStore("state", {
           },
         }).then((res) => {
           this.infoPerso = "";
+          if (count == "loadin") {
+            this.infoApi = [];
+          }
           res.data.results.forEach((item) => {
             this.infoApi.push(item);
           });

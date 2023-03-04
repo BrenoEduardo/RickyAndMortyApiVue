@@ -17,10 +17,9 @@ onMounted(() => {
   showItem(400);
 });
 const infos = computed(() => {
-  console.log("computed", infoApi.value);
   return infoApi.value;
 });
-let count = 1;
+// let count = 1;
 function openInfoCharacter(event) {
   useStateApi.loadingInfosCharacter(event.id);
 
@@ -29,7 +28,7 @@ function openInfoCharacter(event) {
   }
 }
 function verMais() {
-  count += 1;
+  let count = useStateApi.count += 1
   useStateApi.loadingInfos(count, function () {
     showItem(200);
   });
@@ -57,7 +56,6 @@ setTimeout(() => {
     }
   };
 }, 10);
-console.log(infos, "infoooo");
 </script>
 
 <template>
@@ -147,7 +145,6 @@ console.log(infos, "infoooo");
   height: 100%;
   flex-direction: row-reverse;
   cursor: pointer;
-  justify-content: center;
   align-items: center;
   transition: 0.3s;
   color: white;
