@@ -17,7 +17,7 @@ function searchInfo() {
 <template>
   <img src="../assets/logo.png" class="logo" />
   <div @keyup="searchInfo()" class="search">
-    <input type="text" v-model="valueWritten" />
+    <input type="text" v-model="valueWritten" placeholder="Pesquisar" />
   </div>
 </template>
 
@@ -34,6 +34,7 @@ input {
   font-family: monospace;
   outline: none;
   border: 2px solid transparent;
+  text-align: center;
 }
 input:focus {
   border: 2px solid rgb(255, 255, 255);
