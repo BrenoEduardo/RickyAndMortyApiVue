@@ -1,15 +1,14 @@
 <script setup>
 import router from "@/router";
 import { onMounted } from "vue";
-import { useStoreApi } from "../stores/pokemonState";
+import { useStoreApi } from "../stores/state";
 
-const usePokemonState = useStoreApi();
+const useState = useStoreApi();
 function changeHomePage() {
   router.push({ name: "telaAfterHome" });
-  usePokemonState.loadingInfos();
 }
 onMounted(() => {
-  usePokemonState.loadingInfos();
+  useState.loadingInfos('1');
 });
 </script>
 
@@ -44,9 +43,7 @@ onMounted(() => {
   margin-bottom: 32px;
 }
 
-button {
-  background-image: linear-gradient(to right, #22693a, #779a0f);
-  box-shadow: 2px 2px 2px yellow;
+.button {
   padding: 16px 24px;
   width: 150px;
   color: #fff;
@@ -56,5 +53,11 @@ button {
   font-weight: bold;
   cursor: pointer;
   margin-top: 5px;
+  background-color: #4c4929;
+  background-image: linear-gradient(to right, #4b6a21, #a1994c);
+  box-shadow: 0px 0px 11px 0px #f0e14a;
+}
+.button:hover {
+  box-shadow: 0px 0px 11px 20px #f0e14a;
 }
 </style>

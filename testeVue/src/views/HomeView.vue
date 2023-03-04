@@ -1,23 +1,15 @@
 <script setup>
-import CardPokemon from "../components/CardPokemon.vue";
-import ShowInfoPoke from "./ShowInfoPoke.vue";
-import { storeToRefs } from "pinia";
-import { useStoreApi } from "../stores/pokemonState";
-
-const useStateApi = useStoreApi();
-const { infoApi } = storeToRefs(useStateApi);
-
-var a = infoApi.value?.results
-
+import CardInfo from "../components/buscaApi.vue";
+import ShowInfo from "./ShowInfo.vue";
 </script>
 
 <template>
   <main class="backGround">
     <div class="search">
-      <CardPokemon />
+      <CardInfo />
     </div>
     <div class="">
-      <ShowInfoPoke />
+      <ShowInfo />
     </div>
   </main>
 </template>
@@ -25,22 +17,34 @@ var a = infoApi.value?.results
 <style>
 .search {
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
 .backGround {
-  background-image: linear-gradient(to right, #368C40, yellow);
-  height: 100vh;
-  width: 100vw;
+  background: linear-gradient(to bottom right, #000000, #a5a56d);
+  min-height: 100%;
+  min-width: 100%;
+  overflow: hidden;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 10%;
   box-sizing: border-box;
+  height: 100vh;
+  overflow-y: scroll;
 }
-
+.backGround::-webkit-scrollbar-track {
+  background-color: #000b;
+}
+.backGround::-webkit-scrollbar {
+  width: 6px;
+  background: #000b;
+}
+.backGround::-webkit-scrollbar-thumb {
+  background: #ffffff;
+}
 .viewCardNone {
   display: none;
   opacity: 0.9;
@@ -60,5 +64,4 @@ var a = infoApi.value?.results
   width: 167px;
   color: white;
 }
-
 </style>
