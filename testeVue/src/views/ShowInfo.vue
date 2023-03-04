@@ -170,6 +170,7 @@ setTimeout(() => {
   background-color: rgba(0, 0, 0, 0.4);
 }
 .name {
+  width: 55%;
   display: flex;
   align-items: center;
   flex-direction: column;

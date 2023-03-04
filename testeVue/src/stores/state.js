@@ -10,6 +10,7 @@ export const useStoreApi = defineStore("state", {
       infoCharacter: null,
       episodesInfo: [],
       infoPerso: null,
+      count: null
     };
   },
   actions: {
@@ -52,15 +53,11 @@ export const useStoreApi = defineStore("state", {
     async loadingInfos(count, callback) {
       try {
         let url = `https://rickandmortyapi.com/api/character/?page=${count}`;
-        console.log(count, "ocunt");
         if (count == "loadin") {
           url = `https://rickandmortyapi.com/api/character`;
         } else if (this.infoPerso && count) {
           url = `${url}&name=${this.infoPerso}`;
         }
-
-        console.log(count, " count");
-        console.log(url, "infoperso");
         await axios({
           url: url,
           method: "GET",
