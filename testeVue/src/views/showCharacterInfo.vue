@@ -25,7 +25,7 @@ function backHome() {
 </script>
 
 <template>
-  <div class="divPrincipalCard" >
+  <div class="divPrincipalCard">
     <div>
       <img :src="infos.image" class="imageInfo" />
     </div>
@@ -66,10 +66,12 @@ function backHome() {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fa7f72;
+  color: white;
+  background-color: #5a1f19;
   width: 500px;
   border-radius: 20px;
   padding: 30px 0;
+  box-shadow: 0px 0px 25px 0px #f0e14a;
 }
 .imageInfo {
   border-radius: 50%;
@@ -104,10 +106,10 @@ span {
 }
 .conteudo::-webkit-scrollbar {
   width: 6px;
-  background: #f4f4f4;
+  background: #343131;;
 }
 .conteudo::-webkit-scrollbar-thumb {
-  background: #f5f5f5;
+  background: #343131;;
 }
 .containerEps {
   display: flex;
