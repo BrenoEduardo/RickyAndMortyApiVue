@@ -26,7 +26,7 @@ function backHome() {
 
 <template>
   <div class="divPrincipalCard">
-    <div>
+    <div style="text-align: center">
       <img :src="infos.image" class="imageInfo" />
     </div>
     <div>
@@ -69,6 +69,7 @@ function backHome() {
   color: white;
   background-color: #5a1f19;
   width: 500px;
+  max-height: 700px;
   border-radius: 20px;
   padding: 30px 0;
   box-shadow: 0px 0px 25px 0px #f0e14a;
@@ -76,6 +77,7 @@ function backHome() {
 .imageInfo {
   border-radius: 50%;
   padding-bottom: 20px;
+  width: 60%;
 }
 .infosPerso {
   display: flex;
@@ -96,7 +98,7 @@ span {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 0.5rem;
-  max-height: 200px;
+  max-height: 117px;
   min-height: 2em;
   grid: 3rem;
   overflow-y: auto;
@@ -106,10 +108,10 @@ span {
 }
 .conteudo::-webkit-scrollbar {
   width: 6px;
-  background: #343131;;
+  background: #343131;
 }
 .conteudo::-webkit-scrollbar-thumb {
-  background: #343131;;
+  background: #343131;
 }
 .containerEps {
   display: flex;
