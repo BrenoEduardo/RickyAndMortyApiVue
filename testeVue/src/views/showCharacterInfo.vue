@@ -72,6 +72,11 @@ function backHome() {
   padding: 30px 0;
   box-shadow: 0px 0px 25px 0px #f0e14a;
 }
+@media (max-width: 650px) {
+  .divPrincipalCard {
+    scale: 0.7;
+  }
+}
 .imageInfo {
   border-radius: 50%;
   padding-bottom: 20px;
